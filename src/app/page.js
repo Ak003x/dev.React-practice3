@@ -1,5 +1,15 @@
 import "../index.css"
 
+
+const initialItems = [
+  { id: 1, description: "Passports", quantity: 2, packed: false },
+  { id: 2, description: "Socks", quantity: 12, packed: false },
+  { id: 3, description: "Phone", quantity: 12, packed: true },
+];
+
+
+
+
 export default function App() {
 
 
@@ -21,13 +31,31 @@ function Form() {
   return <div className="add-form" > <h3>What do you need for your 😍 trip?</h3></div>
 }
 function PackingList() {
-  return <ul className="list">
-    list
-  </ul>
-}
-function Stats() {
-  return <footer><em>
-    You have X items on your list, and you already packed X (X%)
+  return (
+    <div className="list">
 
-  </em></footer>
+      <ul >
+        {initialItems.map(items => <Item items={items} />)}
+      </ul>
+    </div>
+  )
+}
+
+function Item({ items }) {
+  return (
+    <li>
+
+      <li>{items.quantity} {items.description}</li>
+
+    </li>
+  )
+}
+
+
+function Stats() {
+  return <footer className="stats" >
+    <em>
+      You have X items on your list, and you already packed X (X%)
+
+    </em></footer>
 }
