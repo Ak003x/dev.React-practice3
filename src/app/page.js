@@ -7,9 +7,6 @@ const initialItems = [
   { id: 3, description: "Phone", quantity: 12, packed: true },
 ];
 
-
-
-
 export default function App() {
 
 
@@ -28,7 +25,20 @@ function Logo() {
   return <h1>Far Away </h1>
 }
 function Form() {
-  return <div className="add-form" > <h3>What do you need for your 😍 trip?</h3></div>
+  return <div className="add-form" >
+    <h3>What do you need for your 😍 trip?
+
+    </h3>
+    <select>
+      <option value={1}>1</option>
+      <option value={2}>2</option>
+      <option value={3}>3</option>
+
+
+    </select>
+    <input type="text" placeholder="Items..."/>
+    <button>Add</button>
+  </div>
 }
 function PackingList() {
   return (
