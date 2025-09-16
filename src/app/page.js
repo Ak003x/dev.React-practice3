@@ -30,7 +30,7 @@ function Form() {
 
     </h3>
     <select>
-      {Array.from({ length: 20 }, (_, i) =>  i + 1 ).map((num) => (<option value={num} key={num}>{num}</option>))}
+      {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (<option value={num} key={num}>{num}</option>))}
 
 
     </select>
@@ -43,7 +43,7 @@ function PackingList() {
     <div className="list">
 
       <ul >
-        {initialItems.map(items => <Item items={items} />)}
+        {initialItems.map(items => <Item items={items} key={items.id} />)}
       </ul>
     </div>
   )
