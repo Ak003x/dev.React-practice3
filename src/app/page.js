@@ -36,7 +36,7 @@ function Form() {
 
 
     </select>
-    <input type="text" placeholder="Items..."/>
+    <input type="text" placeholder="Items..." />
     <button>Add</button>
   </div>
 }
