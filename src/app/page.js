@@ -1,4 +1,6 @@
+"use client"
 import "../index.css"
+
 
 
 const initialItems = [
@@ -22,21 +24,29 @@ export default function App() {
 
 
 function Logo() {
-  return <h1>Far Away </h1>
+  return (<h1>Far Away </h1>)
 }
+
 function Form() {
-  return <div className="add-form" >
-    <h3>What do you need for your 😍 trip?
 
-    </h3>
-    <select>
-      {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (<option value={num} key={num}>{num}</option>))}
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e);
+  }
+  return (
+    <form className="add-form" onSubmit={handleSubmit} >
+      <h3>What do you need for your 😍 trip?
+
+      </h3>
+      <select>
+        {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (<option value={num} key={num}>{num}</option>))}
 
 
-    </select>
-    <input type="text" placeholder="Items..." />
-    <button>Add</button>
-  </div>
+      </select>
+      <input type="text" placeholder="Items..." />
+      <button>Add</button>
+    </form>
+  )
 }
 function PackingList() {
   return (
@@ -54,7 +64,7 @@ function Item({ items }) {
     <li>
       <span style={items.packed ? { textDecoration: "line-through" } : {}}>
 
-        <li>{items.quantity} {items.description}</li>
+      {items.quantity} {items.description}
       </span>
       <button>❌</button>
     </li>
