@@ -1,5 +1,6 @@
 "use client"
 import "../index.css"
+import { useState } from "react"
 
 
 
@@ -73,6 +74,7 @@ function Item({ items }) {
 
 
 function Stats() {
+
   return <footer className="stats" >
     <em>
       You have X items on your list, and you already packed X (X%)
