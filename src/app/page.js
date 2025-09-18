@@ -29,6 +29,7 @@ function Logo() {
 }
 
 function Form() {
+  const [description, setDescription] = useState("")
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -44,7 +45,12 @@ function Form() {
 
 
       </select>
-      <input type="text" placeholder="Items..." />
+      <input type="text" placeholder="Items..." value={description}
+
+        onChange={(e) => {
+          console.log(e.target.value)
+          setDescription(e.target.value)
+        }} />
       <button>Add</button>
     </form>
   )
@@ -65,7 +71,7 @@ function Item({ items }) {
     <li>
       <span style={items.packed ? { textDecoration: "line-through" } : {}}>
 
-      {items.quantity} {items.description}
+        {items.quantity} {items.description}
       </span>
       <button>❌</button>
     </li>
