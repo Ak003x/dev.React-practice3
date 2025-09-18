@@ -30,17 +30,29 @@ function Logo() {
 
 function Form() {
   const [description, setDescription] = useState("")
+  const [quantity, setQuantity] = useState(5)
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
+    if (!description) return;
+
+    const newItem = { description, quantity, package: false, id: Date.now() }
+    console.log(newItem);
+
+
+    setDescription("");
+    setQuantity(1);
   }
   return (
     <form className="add-form" onSubmit={handleSubmit} >
       <h3>What do you need for your 😍 trip?
 
       </h3>
-      <select>
+      <select value={quantity}
+        onChange={(q) => {
+          setQuantity(Number(q.target.value))
+        }}>
+
         {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (<option value={num} key={num}>{num}</option>))}
 
 
@@ -48,7 +60,6 @@ function Form() {
       <input type="text" placeholder="Items..." value={description}
 
         onChange={(e) => {
-          console.log(e.target.value)
           setDescription(e.target.value)
         }} />
       <button>Add</button>
