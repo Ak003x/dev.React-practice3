@@ -4,20 +4,15 @@ import { useState } from "react"
 
 
 
-const initialItems = [
-  { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
-  { id: 3, description: "Phone", quantity: 12, packed: true },
-];
-
+const [item, setItems] = useState([])
 export default function App() {
-
+  const [item, setItems] = useState([])
 
   return (
     <div>
       <Logo />
-      <Form />
-      <PackingList />
+      <Form  />
+      <PackingList  items={item}/>
       <Stats />
     </div>
   )
@@ -31,6 +26,13 @@ function Logo() {
 function Form() {
   const [description, setDescription] = useState("")
   const [quantity, setQuantity] = useState(1)
+ 
+
+
+  function handleAddleItems(item) {
+    setItems((items) => [...items, item])
+  }
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,7 +41,7 @@ function Form() {
     const newItem = { description, quantity, package: false, id: Date.now() }
     console.log(newItem);
 
-
+    handleAddleItems(newItem)
     setDescription("");
     setQuantity(1);
   }
@@ -66,7 +68,7 @@ function Form() {
     </form>
   )
 }
-function PackingList() {
+function PackingList({items}) {
   return (
     <div className="list">
 
