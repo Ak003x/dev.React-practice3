@@ -28,15 +28,12 @@ function Logo() {
 function Form({ onAddItems }) {
   const [description, setDescription] = useState("")
   const [quantity, setQuantity] = useState(1)
- 
 
 
-  function handleAddleItems(item) {
-    setItems((items) => [...items, item])
-  }
 
 
-function handleSubmit(e) {
+
+  function handleSubmit(e) {
     e.preventDefault();
     if (!description) return;
 
