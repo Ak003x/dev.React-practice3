@@ -7,6 +7,7 @@ import { useState } from "react"
 
 export default function App() {
   const [item, setItems] = useState([])
+
   function handleAddleItems(item) {
     setItems((items) => [...items, item])
   }
@@ -17,13 +18,15 @@ export default function App() {
     setItems((items) => items.filter((item) => item.id !== id))
   }
 
-
+  function handleUpdatedItems() {
+    setItems((items) => items.map((item) => item.id === id ? { ...item, packed: !item.packed } : item))
+  }
 
   return (
     <div>
       <Logo />
       <Form onAddItems={handleAddleItems} />
-      <PackingList items={item} DeletedItems={handleDeletedItems} />
+      <PackingList items={item} DeletedItems={handleDeletedItems} Updated />
       <Stats />
     </div>
   )
@@ -90,6 +93,7 @@ function PackingList({ items, DeletedItems }) {
 function Item({ items, DeletedItems }) {
   return (
     <li>
+      <input type="checkbox" />
       <span style={items.packed ? { textDecoration: "line-through" } : {}}>
 
         {items.quantity} {items.description}
