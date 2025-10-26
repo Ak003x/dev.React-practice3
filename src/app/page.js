@@ -18,7 +18,7 @@ export default function App() {
     setItems((items) => items.filter((item) => item.id !== id))
   }
 
-  function handleUpdatedItems() {
+  function handleUpdatedItems(id) {
     setItems((items) => items.map((item) => item.id === id ? { ...item, packed: !item.packed } : item))
   }
 
@@ -26,7 +26,7 @@ export default function App() {
     <div>
       <Logo />
       <Form onAddItems={handleAddleItems} />
-      <PackingList items={item} DeletedItems={handleDeletedItems} Updated />
+      <PackingList items={item} DeletedItems={handleDeletedItems} UpdatedItems={handleUpdatedItems} />
       <Stats />
     </div>
   )
@@ -49,7 +49,7 @@ function Form({ onAddItems }) {
     e.preventDefault();
     if (!description) return;
 
-    const newItem = { description, quantity, package: false, id: Date.now() }
+    const newItem = { description, quantity, packed: false, id: Date.now() }
     console.log(newItem);
 
     onAddItems(newItem)
@@ -79,21 +79,21 @@ function Form({ onAddItems }) {
     </form>
   )
 }
-function PackingList({ items, DeletedItems }) {
+function PackingList({ items, DeletedItems, UpdatedItems }) {
   return (
     <div className="list">
 
       <ul >
-        {items.map(items => <Item items={items} key={items.id} DeletedItems={DeletedItems} />)}
+        {items.map(items => <Item items={items} key={items.id} DeletedItems={DeletedItems} UpdatedItems={UpdatedItems} />)}
       </ul>
     </div>
   )
 }
 
-function Item({ items, DeletedItems }) {
+function Item({ items, DeletedItems, UpdatedItems }) {
   return (
     <li>
-      <input type="checkbox" />
+      <input type="checkbox" value={items.packed} onChange={() => UpdatedItems(items.id)} />
       <span style={items.packed ? { textDecoration: "line-through" } : {}}>
 
         {items.quantity} {items.description}
