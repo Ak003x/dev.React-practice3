@@ -108,7 +108,7 @@ function Stats({ items }) {
   if (!items.length) {
     return (<p className="stats">
       <em>
-        Starting adding items in the lis
+        Starting adding items in the Far Away list
       </em>
     </p>);
   }
