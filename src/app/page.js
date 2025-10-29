@@ -23,11 +23,11 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="app">
       <Logo />
       <Form onAddItems={handleAddleItems} />
       <PackingList items={item} DeletedItems={handleDeletedItems} UpdatedItems={handleUpdatedItems} />
-      <Stats />
+      <Stats items={item} />
     </div>
   )
 }
@@ -104,11 +104,13 @@ function Item({ items, DeletedItems, UpdatedItems }) {
 }
 
 
-function Stats() {
+function Stats({ items }) {
+  const numItems = items.length;
+
 
   return <footer className="stats" >
     <em>
-      You have X items on your list, and you already packed X (X%)
+      You have {numItems} items on your list, and you already packed X (X%)
 
     </em></footer>
 }
