@@ -108,7 +108,7 @@ function Stats({ items }) {
   if (!items.length) {
     return (<p className="stats">
       <em>
-        Starting adding items in the list
+        Starting adding items in the lis
       </em>
     </p>);
   }
