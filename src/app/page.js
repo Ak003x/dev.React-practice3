@@ -50,7 +50,6 @@ function Form({ onAddItems }) {
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() }
-    console.log(newItem);
 
     onAddItems(newItem)
     setDescription("");
@@ -106,11 +105,13 @@ function Item({ items, DeletedItems, UpdatedItems }) {
 
 function Stats({ items }) {
   const numItems = items.length;
+  const numPacked = items.filter((item) => item.packed).length;
+  const percentage = Math.round((numPacked / numItems) * 100);
 
 
   return <footer className="stats" >
     <em>
-      You have {numItems} items on your list, and you already packed X (X%)
+      You have {numItems} items on your list, and you already packed {numPacked} ({percentage});
 
     </em></footer>
 }
