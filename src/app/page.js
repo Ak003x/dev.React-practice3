@@ -6,7 +6,7 @@ import { useState } from "react"
 
 
 export default function App() {
-  const [item, setItems] = useState([])
+  const [items, setItems] = useState([])
 
   function handleAddleItems(item) {
     setItems((items) => [...items, item])
@@ -26,8 +26,8 @@ export default function App() {
     <div className="app">
       <Logo />
       <Form onAddItems={handleAddleItems} />
-      <PackingList items={item} DeletedItems={handleDeletedItems} UpdatedItems={handleUpdatedItems} />
-      <Stats items={item} />
+      <PackingList items={items} DeletedItems={handleDeletedItems} UpdatedItems={handleUpdatedItems} />
+      <Stats items={items} />
     </div>
   )
 }
@@ -79,14 +79,22 @@ function Form({ onAddItems }) {
   )
 }
 function PackingList({ items, DeletedItems, UpdatedItems }) {
+  const [sortBy, setSortBy] = useState("input");
+  let sortedItems;
+
+  if (sortBy === "input") sortedItems = items;
+  if (sortBy === "description") sortedItems = items.slice().sort((a, b) => a.description.localeCompare(b.description))
+  if (sortBy === "packed") sortedItems = items.slice().sort((a, b) => Number(a.packed) - Number(b.packed))
+
+
   return (
     <div className="list">
 
       <ul >
-        {items.map(items => <Item items={items} key={items.id} DeletedItems={DeletedItems} UpdatedItems={UpdatedItems} />)}
+        {sortedItems.map(items => <Item items={items} key={items.id} DeletedItems={DeletedItems} UpdatedItems={UpdatedItems} />)}
       </ul>
       <div className="action">
-        <select>
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input">Sort by input Order </option>
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
