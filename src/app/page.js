@@ -87,9 +87,9 @@ function PackingList({ items, DeletedItems, UpdatedItems }) {
       </ul>
       <div className="action">
         <select>
-          <option value="">Sort by input Order </option>
-          <option value="">Sort by description</option>
-          <option value="">Sort by packed status</option>
+          <option value="input">Sort by input Order </option>
+          <option value="description">Sort by description</option>
+          <option value="packed">Sort by packed status</option>
         </select>
       </div>
 
