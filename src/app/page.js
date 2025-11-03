@@ -85,6 +85,16 @@ function PackingList({ items, DeletedItems, UpdatedItems }) {
       <ul >
         {items.map(items => <Item items={items} key={items.id} DeletedItems={DeletedItems} UpdatedItems={UpdatedItems} />)}
       </ul>
+      <div className="action">
+        <select>
+          <option value="">Sort by input Order </option>
+          <option value="">Sort by description</option>
+          <option value="">Sort by packed status</option>
+        </select>
+      </div>
+
+
+
     </div>
   )
 }
